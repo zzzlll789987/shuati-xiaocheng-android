@@ -1,0 +1,80 @@
+.screen {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 48rpx 36rpx 64rpx;
+  background: #ffffff;
+}
+
+.hero {
+  margin-bottom: 32rpx;
+}
+
+.title {
+  color: #111827;
+  font-size: 64rpx;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin-top: 12rpx;
+  color: #6b7280;
+  font-size: 32rpx;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18rpx;
+}
+
+.stat-card {
+  box-sizing: border-box;
+  min-height: 148rpx;
+  padding: 26rpx;
+  background: #fff7ed;
+  border: 1rpx solid #fed7aa;
+  border-radius: 8rpx;
+}
+
+.stat-value {
+  display: block;
+  color: #111827;
+  font-size: 48rpx;
+  font-weight: 800;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 6rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+}
+
+.section-title {
+  margin: 46rpx 0 18rpx;
+  color: #111827;
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.primary,
+.secondary {
+  width: 100%;
+  height: 96rpx;
+  margin: 16rpx 0 0;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 96rpx;
+}
+
+.primary {
+  color: #ffffff;
+  background: #f97316;
+}
+
+.secondary {
+  color: #111827;
+  background: #fff7ed;
+}

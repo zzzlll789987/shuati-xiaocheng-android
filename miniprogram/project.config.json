@@ -1,0 +1,15 @@
+{
+  "appid": "touristappid",
+  "projectname": "shuati-xiaocheng-miniprogram",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "latest",
+  "srcMiniprogramRoot": "./",
+  "condition": {}
+}
