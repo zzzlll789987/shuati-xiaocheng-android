@@ -1,0 +1,22 @@
+<view class="screen" wx:if="{{question}}">
+  <view class="topbar">
+    <text class="progress">第 {{currentIndex + 1}} / {{questions.length}} 题</text>
+    <button class="home-button" bindtap="goHome">返回首页</button>
+  </view>
+
+  <view class="badge">{{question.category}}</view>
+  <view class="stem">{{question.stem}}</view>
+
+  <block wx:for="{{question.choices}}" wx:key="*this">
+    <button class="choice {{answered && index === question.answerIndex ? 'correct' : ''}} {{answered && index === selectedIndex && index !== question.answerIndex ? 'wrong' : ''}}" data-index="{{index}}" bindtap="chooseAnswer">
+      {{item}}
+    </button>
+  </block>
+
+  <view class="result" wx:if="{{answered}}">
+    <view class="result-title {{isCorrect ? 'ok' : 'bad'}}">{{isCorrect ? '回答正确' : '回答错误'}}</view>
+    <view class="answer">正确答案：{{question.choices[question.answerIndex]}}</view>
+    <view class="explanation">{{question.explanation}}</view>
+    <button class="primary" bindtap="nextQuestion">{{isLast ? '完成并返回首页' : '下一题'}}</button>
+  </view>
+</view>

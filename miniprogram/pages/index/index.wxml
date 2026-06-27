@@ -1,0 +1,34 @@
+<view class="screen">
+  <view class="hero">
+    <view class="title">刷题小橙</view>
+    <view class="subtitle">今天也稳稳拿分</view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card">
+      <text class="stat-value">{{stats.total}}</text>
+      <text class="stat-label">总题数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{stats.answered}}</text>
+      <text class="stat-label">已完成</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{stats.accuracy}}%</text>
+      <text class="stat-label">正确率</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{stats.streak}}</text>
+      <text class="stat-label">连对</text>
+    </view>
+  </view>
+
+  <view class="section-title">选择练习</view>
+  <button class="primary" bindtap="startAll">全部题目</button>
+
+  <block wx:for="{{categories}}" wx:key="*this">
+    <button class="secondary" data-category="{{item}}" bindtap="startCategory">{{item}}</button>
+  </block>
+
+  <button class="secondary" bindtap="startWrong">错题本</button>
+</view>

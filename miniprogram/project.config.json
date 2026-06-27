@@ -1,0 +1,15 @@
+{
+  "appid": "wxd2748acf8e521c1d",
+  "projectname": "shuati-xiaocheng-miniprogram",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "latest",
+  "srcMiniprogramRoot": "./",
+  "condition": {}
+}
