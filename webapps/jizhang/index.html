@@ -19,7 +19,10 @@
 (function(){
 'use strict';
 const KEY='xc-ledger-v3';
-const categoryOptions=['买菜','水果','零食','购物','交通','水电','旅游','就餐','杂项'];
+const categoryOptionsByType={
+  expense:['买菜','水果','零食','购物','交通','水电','旅游','就餐','杂项'],
+  income:['工资','奖金','经营','补助','其他']
+};
 const LIST_LIMIT=8;
 let entryType='expense';
 let entries=[];
@@ -38,8 +41,8 @@ function escapeHtml(value){return String(value||'').replace(/[&<>"]/g,match=>({'
 function csvCell(value){const text=String(value==null?'':value).replace(/"/g,'""');return '"'+text+'"'}
 function load(){try{entries=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){entries=[]}}
 function save(){localStorage.setItem(KEY,JSON.stringify(entries))}
-function fillCategories(){ui.cat.innerHTML=categoryOptions.map(name=>'<option value="'+name+'">'+name+'</option>').join('')}
-function setEntryType(type){entryType=type;ui.expenseTab.classList.toggle('on',type==='expense');ui.incomeTab.classList.toggle('on',type==='income');ui.amount.focus()}
+function fillCategories(){const options=categoryOptionsByType[entryType]||categoryOptionsByType.expense;ui.cat.innerHTML=options.map(name=>'<option value="'+name+'">'+name+'</option>').join('')}
+function setEntryType(type){entryType=type;ui.expenseTab.classList.toggle('on',type==='expense');ui.incomeTab.classList.toggle('on',type==='income');fillCategories();ui.amount.focus()}
 function fillMonths(){const months=[...new Set(entries.map(item=>monthKey(item.date)).filter(Boolean))].sort().reverse();const old=monthFilter;ui.month.innerHTML='<option value="all">全部月份</option>'+months.map(m=>'<option value="'+m+'">'+m+'</option>').join('');ui.month.value=months.includes(old)?old:'all';monthFilter=ui.month.value}
 function filteredEntries(){return entries.filter(item=>monthFilter==='all'||monthKey(item.date)===monthFilter).filter(item=>{const text=(item.category+' '+item.note).toLowerCase();return text.includes(searchText.toLowerCase())}).sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt)}
 function summaryEntries(){const selected=monthFilter==='all'?monthKey(today()):monthFilter;return entries.filter(item=>monthKey(item.date)===selected)}
@@ -57,7 +60,7 @@ ui.month.addEventListener('change',()=>{monthFilter=ui.month.value;listExpanded=
 ui.q.addEventListener('input',()=>{searchText=ui.q.value;listExpanded=false;renderList()});
 ui.list.addEventListener('click',event=>{if(event.target.classList.contains('del'))deleteEntry(event.target.dataset.id);if(event.target.id==='toggleList'){listExpanded=!listExpanded;renderList()}});
 ui.exportBtn.addEventListener('click',exportCsv);
-load();ui.date.value=today();fillCategories();setEntryType('expense');render();
+load();ui.date.value=today();setEntryType('expense');render();
 })();
 </script>
 </body>
